@@ -2,7 +2,16 @@ import './HomePage.css'
 import Header from '../components/Header'
 import mainImage from '../Assets/main-image.jpg'
 
+// Easily configurable address
+const VENUE_ADDRESS = "Avenida das Flores, 30 - Distrito do Porto, Capela do Alto - SP, 18195-000"
+
 function HomePage() {
+  // Encode address for Google Maps URL
+  const encodedAddress = encodeURIComponent(VENUE_ADDRESS)
+  const mapUrl = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodedAddress}`
+  // Alternative without API key (using search query):
+  const mapUrlAlt = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=15&ie=UTF8&iwloc=&output=embed`
+
   return (
     <div className="home-page">
       <Header />
@@ -10,6 +19,33 @@ function HomePage() {
       <main className="main-content">
         <div className="photo-placeholder">
           <img src={mainImage} alt="Wedding Photo" className="main-image" />
+        </div>
+
+        <div className="location-section">
+          <div className="map-container">
+            <iframe
+              src={mapUrlAlt}
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Venue Location"
+            />
+          </div>
+          
+          <div className="address-display">
+            <svg 
+              className="location-icon" 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 24 24" 
+              fill="currentColor"
+            >
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            <span className="address-text">{VENUE_ADDRESS}</span>
+          </div>
         </div>
       </main>
     </div>
