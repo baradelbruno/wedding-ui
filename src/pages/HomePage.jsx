@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import './HomePage.css'
+import logo from '../Assets/logo.png'
+import mainImage from '../Assets/main-image.jpg'
 
 function HomePage() {
   const navigate = useNavigate()
@@ -8,7 +10,7 @@ function HomePage() {
     <div className="home-page">
       <header className="header">
         <div className="logo">
-          Logo
+          <img src={logo} alt="Wedding Logo" className="logo-image" />
         </div>
         <nav className="nav-buttons">
           <button 
@@ -28,7 +30,7 @@ function HomePage() {
       
       <main className="main-content">
         <div className="photo-placeholder">
-          <span>Photo placeholder</span>
+          <img src={mainImage} alt="Wedding Photo" className="main-image" />
         </div>
       </main>
     </div>
