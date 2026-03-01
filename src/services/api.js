@@ -1,6 +1,6 @@
 // API Service - Reusable functions for API calls
 
-const API_BASE_URL = 'https://localhost:7290' // Change to your server URL
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://localhost:7290' // Uses environment variable in production, localhost for development
 
 /**
  * Generic GET request

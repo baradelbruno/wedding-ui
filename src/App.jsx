@@ -11,7 +11,7 @@ function App() {
   const [confirmMessage, setConfirmMessage] = useState(null)
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
-  const apiUrl = 'https://localhost:7290/WeddingGuests'
+  const apiUrl = `${import.meta.env.VITE_API_URL || 'https://localhost:7290'}/WeddingGuests`
 
   // Validate email
   const isEmailValid = (email) => {
