@@ -51,10 +51,36 @@ function ConfirmationForm({ selectedGuest, onConfirm, confirming }) {
     return null
   }
 
+  const inputStyle = {
+    width: '100%',
+    padding: '16px 20px',
+    fontSize: '16px',
+    borderRadius: '12px',
+    border: '2px solid #e9ecef',
+    boxSizing: 'border-box',
+    transition: 'all 0.3s ease',
+    outline: 'none',
+    fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Roboto\', \'Oxygen\', \'Ubuntu\', \'Cantarell\', sans-serif'
+  }
+
+  const labelStyle = {
+    display: 'block',
+    marginBottom: '8px',
+    fontWeight: '600',
+    fontSize: '14px',
+    color: '#495057'
+  }
+
+  const errorStyle = {
+    color: '#dc3545',
+    fontSize: '13px',
+    marginTop: '6px'
+  }
+
   return (
-    <div style={{ marginBottom: '20px' }}>
-      <div style={{ marginBottom: '15px' }}>
-        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
+    <div style={{ marginBottom: '30px' }}>
+      <div style={{ marginBottom: '20px' }}>
+        <label style={labelStyle}>
           Email
         </label>
         <input
@@ -63,23 +89,21 @@ function ConfirmationForm({ selectedGuest, onConfirm, confirming }) {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="seu@email.com"
           style={{
-            width: '100%',
-            padding: '12px',
-            fontSize: '16px',
-            borderRadius: '8px',
-            border: `2px solid ${email && !isEmailValid(email) ? '#f44336' : '#ccc'}`,
-            boxSizing: 'border-box'
+            ...inputStyle,
+            borderColor: email && !isEmailValid(email) ? '#dc3545' : '#e9ecef'
           }}
+          onFocus={(e) => e.target.style.borderColor = email && !isEmailValid(email) ? '#dc3545' : '#667eea'}
+          onBlur={(e) => e.target.style.borderColor = email && !isEmailValid(email) ? '#dc3545' : '#e9ecef'}
         />
         {email && !isEmailValid(email) && (
-          <div style={{ color: '#f44336', fontSize: '12px', marginTop: '5px' }}>
+          <div style={errorStyle}>
             Email deve conter "@" e ".com"
           </div>
         )}
       </div>
 
-      <div style={{ marginBottom: '15px' }}>
-        <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>
+      <div style={{ marginBottom: '24px' }}>
+        <label style={labelStyle}>
           Telefone
         </label>
         <input
@@ -89,16 +113,14 @@ function ConfirmationForm({ selectedGuest, onConfirm, confirming }) {
           placeholder="(00) 00000-0000"
           maxLength="15"
           style={{
-            width: '100%',
-            padding: '12px',
-            fontSize: '16px',
-            borderRadius: '8px',
-            border: `2px solid ${phoneNumber && phoneNumber.replace(/\D/g, '').length < 11 ? '#f44336' : '#ccc'}`,
-            boxSizing: 'border-box'
+            ...inputStyle,
+            borderColor: phoneNumber && phoneNumber.replace(/\D/g, '').length < 11 ? '#dc3545' : '#e9ecef'
           }}
+          onFocus={(e) => e.target.style.borderColor = phoneNumber && phoneNumber.replace(/\D/g, '').length < 11 ? '#dc3545' : '#667eea'}
+          onBlur={(e) => e.target.style.borderColor = phoneNumber && phoneNumber.replace(/\D/g, '').length < 11 ? '#dc3545' : '#e9ecef'}
         />
         {phoneNumber && phoneNumber.replace(/\D/g, '').length < 11 && (
-          <div style={{ color: '#f44336', fontSize: '12px', marginTop: '5px' }}>
+          <div style={errorStyle}>
             Telefone deve ter 11 dígitos
           </div>
         )}
@@ -109,25 +131,31 @@ function ConfirmationForm({ selectedGuest, onConfirm, confirming }) {
           onClick={handleConfirm}
           disabled={!isFormValid() || confirming}
           style={{
-            padding: '12px 24px',
+            padding: '16px 40px',
             fontSize: '16px',
-            fontWeight: 'bold',
-            borderRadius: '8px',
+            fontWeight: '600',
+            borderRadius: '25px',
             border: 'none',
-            background: isFormValid() ? '#4CAF50' : '#ccc',
+            background: isFormValid() && !confirming 
+              ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' 
+              : '#dee2e6',
             color: 'white',
-            cursor: isFormValid() ? 'pointer' : 'not-allowed',
+            cursor: isFormValid() && !confirming ? 'pointer' : 'not-allowed',
             whiteSpace: 'nowrap',
-            transition: 'background 0.2s'
+            transition: 'all 0.3s ease',
+            boxShadow: isFormValid() && !confirming ? '0 4px 12px rgba(102, 126, 234, 0.4)' : 'none',
+            fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Roboto\', \'Oxygen\', \'Ubuntu\', \'Cantarell\', sans-serif'
           }}
           onMouseEnter={(e) => {
-            if (isFormValid()) {
-              e.target.style.background = '#45a049'
+            if (isFormValid() && !confirming) {
+              e.target.style.transform = 'translateY(-2px)'
+              e.target.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.5)'
             }
           }}
           onMouseLeave={(e) => {
-            if (isFormValid()) {
-              e.target.style.background = '#4CAF50'
+            if (isFormValid() && !confirming) {
+              e.target.style.transform = 'translateY(0)'
+              e.target.style.boxShadow = '0 4px 12px rgba(102, 126, 234, 0.4)'
             }
           }}
         >

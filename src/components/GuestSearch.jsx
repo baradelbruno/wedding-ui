@@ -22,8 +22,8 @@ function GuestSearch({ guests, onSelectGuest }) {
   }
 
   return (
-    <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-      <div style={{ position: 'relative', flex: 1 }}>
+    <div style={{ marginBottom: '30px' }}>
+      <div style={{ position: 'relative' }}>
         <input
           type="text"
           value={searchTerm}
@@ -31,27 +31,31 @@ function GuestSearch({ guests, onSelectGuest }) {
           placeholder="Digite o seu nome"
           style={{
             width: '100%',
-            padding: '12px',
+            padding: '16px 20px',
             fontSize: '16px',
-            borderRadius: '8px',
-            border: '2px solid #ccc',
-            boxSizing: 'border-box'
+            borderRadius: '12px',
+            border: '2px solid #e9ecef',
+            boxSizing: 'border-box',
+            transition: 'all 0.3s ease',
+            outline: 'none',
+            fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Roboto\', \'Oxygen\', \'Ubuntu\', \'Cantarell\', sans-serif'
           }}
+          onFocus={(e) => e.target.style.borderColor = '#667eea'}
+          onBlur={(e) => e.target.style.borderColor = '#e9ecef'}
         />
         
         {searchTerm && filteredGuests.length > 0 && !selectedGuest && (
           <div style={{
             position: 'absolute',
-            top: '100%',
+            top: 'calc(100% + 8px)',
             left: 0,
             right: 0,
             maxHeight: '300px',
             overflowY: 'auto',
             background: 'white',
-            border: '1px solid #ccc',
-            borderRadius: '8px',
+            borderRadius: '12px',
             marginTop: '5px',
-            boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
             zIndex: 1000
           }}>
             {filteredGuests.map(guest => (
@@ -59,12 +63,13 @@ function GuestSearch({ guests, onSelectGuest }) {
                 key={guest.id}
                 onClick={() => handleSelectGuest(guest)}
                 style={{
-                  padding: '12px',
+                  padding: '16px 20px',
                   cursor: 'pointer',
-                  borderBottom: '1px solid #eee',
-                  transition: 'background 0.2s'
+                  borderBottom: '1px solid #f1f3f5',
+                  transition: 'background 0.2s ease',
+                  fontSize: '15px'
                 }}
-                onMouseEnter={(e) => e.target.style.background = '#f5f5f5'}
+                onMouseEnter={(e) => e.target.style.background = '#f8f9fa'}
                 onMouseLeave={(e) => e.target.style.background = 'white'}
               >
                 {guest.name}
@@ -75,13 +80,15 @@ function GuestSearch({ guests, onSelectGuest }) {
 
         {searchTerm && filteredGuests.length === 0 && (
           <div style={{
-            marginTop: '10px',
-            padding: '10px',
+            marginTop: '12px',
+            padding: '16px',
             background: '#fff3cd',
-            borderRadius: '4px',
-            color: '#856404'
+            borderRadius: '12px',
+            color: '#856404',
+            fontSize: '14px',
+            textAlign: 'center'
           }}>
-            No guests found matching "{searchTerm}"
+            Nenhum convidado encontrado com "{searchTerm}"
           </div>
         )}
       </div>

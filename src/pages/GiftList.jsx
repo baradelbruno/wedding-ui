@@ -12,10 +12,10 @@ function GiftList() {
         </div>
 
         <div className="card">
-        <p style={{ textAlign: 'center', fontSize: '18px', color: '#666' }}>
-          Em breve você poderá vizualizar a lista de presentes aqui!
-        </p>
-      </div>
+          <p>
+            Em breve você poderá visualizar a lista de presentes aqui!
+          </p>
+        </div>
       </div>
     </div>
   )

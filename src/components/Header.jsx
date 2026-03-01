@@ -9,35 +9,37 @@ function Header() {
 
   return (
     <header className="header">
-      <div className="logo">
-        <img src={logo} alt="Wedding Logo" className="logo-image" />
+      <div className="header-content">
+        <div className="logo-container" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+          <img src={logo} alt="Wedding Logo" className="logo-image" />
+        </div>
+        
+        {isHomePage ? (
+          <nav className="nav-buttons">
+            <button 
+              className="nav-button primary"
+              onClick={() => navigate('/confirmar-presenca')}
+            >
+              Confirmar Presença
+            </button>
+            <button 
+              className="nav-button secondary"
+              onClick={() => navigate('/lista-presentes')}
+            >
+              Lista de Presentes
+            </button>
+          </nav>
+        ) : (
+          <nav className="nav-buttons">
+            <button 
+              className="nav-button back-button"
+              onClick={() => navigate('/')}
+            >
+              ← Voltar
+            </button>
+          </nav>
+        )}
       </div>
-      
-      {isHomePage ? (
-        <nav className="nav-buttons">
-          <button 
-            className="nav-button"
-            onClick={() => navigate('/confirmar-presenca')}
-          >
-            Confirmar Presença
-          </button>
-          <button 
-            className="nav-button"
-            onClick={() => navigate('/lista-presentes')}
-          >
-            Lista de Presentes
-          </button>
-        </nav>
-      ) : (
-        <nav className="nav-buttons">
-          <button 
-            className="nav-button back-button"
-            onClick={() => navigate('/')}
-          >
-            ← Voltar
-          </button>
-        </nav>
-      )}
     </header>
   )
 }

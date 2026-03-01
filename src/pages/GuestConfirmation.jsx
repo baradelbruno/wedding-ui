@@ -117,11 +117,32 @@ function GuestConfirmation() {
         </div>
 
         <div className="card">
-        {loading && <p>Loading guests...</p>}
+        {loading && (
+          <div style={{ 
+            textAlign: 'center', 
+            padding: '40px', 
+            color: '#6c757d',
+            fontSize: '16px'
+          }}>
+            <div style={{ 
+              marginBottom: '12px',
+              fontSize: '32px'
+            }}>⏳</div>
+            Carregando convidados...
+          </div>
+        )}
         
         {error && (
-          <div style={{ color: 'red', padding: '10px', border: '1px solid red', borderRadius: '4px', marginBottom: '15px' }}>
-            <strong>Error:</strong> {error}
+          <div style={{ 
+            padding: '16px 20px', 
+            background: 'linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%)', 
+            borderRadius: '12px', 
+            marginBottom: '20px',
+            color: '#721c24',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+          }}>
+            <div style={{ fontWeight: '600', marginBottom: '4px' }}>⚠ Erro:</div>
+            <div>{error}</div>
           </div>
         )}
 
@@ -143,20 +164,33 @@ function GuestConfirmation() {
             {selectedGuest?.isAttending && (
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
                 <div style={{
-                  padding: '12px 24px',
+                  padding: '16px 32px',
                   fontSize: '16px',
-                  fontWeight: 'bold',
-                  borderRadius: '8px',
-                  background: '#ccc',
-                  color: 'white'
+                  fontWeight: '600',
+                  borderRadius: '25px',
+                  background: 'linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%)',
+                  color: '#155724',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px'
                 }}>
-                  Já confirmado!
+                  <span style={{ fontSize: '20px' }}>✓</span>
+                  <span>Já confirmado!</span>
                 </div>
               </div>
             )}
 
-            <div style={{ marginTop: '20px', fontSize: '14px', color: '#666' }}>
-              {guests.length} guest{guests.length !== 1 ? 's' : ''} in the system
+            <div style={{ 
+              marginTop: '30px', 
+              fontSize: '14px', 
+              color: '#6c757d',
+              textAlign: 'center',
+              padding: '12px',
+              background: '#f8f9fa',
+              borderRadius: '8px'
+            }}>
+              {guests.length} convidado{guests.length !== 1 ? 's' : ''} no sistema
             </div>
           </>
         )}
