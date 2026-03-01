@@ -1,7 +1,15 @@
 .guest-confirmation-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+}
+
+.content-wrapper {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  width: 100%;
 }
 
 .guest-confirmation-page h1 {

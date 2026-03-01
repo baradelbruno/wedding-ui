@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Header from '../components/Header'
 import GuestSearch from '../components/GuestSearch'
 import ConfirmationForm from '../components/ConfirmationForm'
 import StatusMessage from '../components/StatusMessage'
@@ -108,11 +109,14 @@ function GuestConfirmation() {
 
   return (
     <div className="guest-confirmation-page">
-      <div>
-        <h1>Lista de Presença Casamento Larissa e Bruno</h1>
-      </div>
+      <Header />
+      
+      <div className="content-wrapper">
+        <div>
+          <h1>Lista de Presença Casamento Larissa e Bruno</h1>
+        </div>
 
-      <div className="card">
+        <div className="card">
         {loading && <p>Loading guests...</p>}
         
         {error && (
@@ -156,6 +160,7 @@ function GuestConfirmation() {
             </div>
           </>
         )}
+      </div>
       </div>
     </div>
   )
