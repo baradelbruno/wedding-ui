@@ -13,7 +13,6 @@ function GiftModal({ gift, onClose, onPurchase }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
 
-  const isPurchased = gift.purchases && gift.purchases.length > 0
   const fullImageUrl = getFullImageUrl(gift.imageUrl)
 
   const handleInputChange = (e) => {
@@ -99,78 +98,68 @@ function GiftModal({ gift, onClose, onPurchase }) {
               <span className="price-value">R$ {gift.price.toFixed(2).replace('.', ',')}</span>
             </div>
 
-            {isPurchased ? (
-              <div className="gift-modal-purchased">
-                <div className="purchased-badge">✓ Este presente já foi reservado</div>
-                <p className="purchased-message">
-                  Este presente já foi escolhido por outro convidado.
-                  Por favor, escolha outro presente da lista.
-                </p>
+            <form className="gift-modal-form" onSubmit={handleSubmit}>
+              <h3>Comprar este Presente</h3>
+              
+              <div className="form-group">
+                <label htmlFor="purchasedBy">Seu Nome *</label>
+                <input
+                  type="text"
+                  id="purchasedBy"
+                  name="purchasedBy"
+                  value={purchaseData.purchasedBy}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="Digite seu nome completo"
+                />
               </div>
-            ) : (
-              <form className="gift-modal-form" onSubmit={handleSubmit}>
-                <h3>Comprar este Presente</h3>
-                
-                <div className="form-group">
-                  <label htmlFor="purchasedBy">Seu Nome *</label>
-                  <input
-                    type="text"
-                    id="purchasedBy"
-                    name="purchasedBy"
-                    value={purchaseData.purchasedBy}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="Digite seu nome completo"
-                  />
-                </div>
 
-                <div className="form-group">
-                  <label htmlFor="email">E-mail</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={purchaseData.email}
-                    onChange={handleInputChange}
-                    placeholder="seu@email.com"
-                  />
-                </div>
+              <div className="form-group">
+                <label htmlFor="email">E-mail</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={purchaseData.email}
+                  onChange={handleInputChange}
+                  placeholder="seu@email.com"
+                />
+              </div>
 
-                <div className="form-group">
-                  <label htmlFor="phone">Telefone</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={purchaseData.phone}
-                    onChange={handleInputChange}
-                    placeholder="(00) 00000-0000"
-                  />
-                </div>
+              <div className="form-group">
+                <label htmlFor="phone">Telefone</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={purchaseData.phone}
+                  onChange={handleInputChange}
+                  placeholder="(00) 00000-0000"
+                />
+              </div>
 
-                <div className="form-group">
-                  <label htmlFor="pixCode">Chave PIX (para receber código de pagamento) *</label>
-                  <input
-                    type="text"
-                    id="pixCode"
-                    name="pixCode"
-                    value={purchaseData.pixCode}
-                    onChange={handleInputChange}
-                    required
-                    placeholder="CPF, E-mail, Telefone ou Chave Aleatória"
-                  />
-                  <small>Você receberá um código PIX para pagamento</small>
-                </div>
+              <div className="form-group">
+                <label htmlFor="pixCode">Chave PIX (para receber código de pagamento) *</label>
+                <input
+                  type="text"
+                  id="pixCode"
+                  name="pixCode"
+                  value={purchaseData.pixCode}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="CPF, E-mail, Telefone ou Chave Aleatória"
+                />
+                <small>Você receberá um código PIX para pagamento</small>
+              </div>
 
-                <button 
-                  type="submit" 
-                  className="gift-modal-submit"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Processando...' : 'Confirmar Compra'}
-                </button>
-              </form>
-            )}
+              <button 
+                type="submit" 
+                className="gift-modal-submit"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Processando...' : 'Confirmar Compra'}
+              </button>
+            </form>
           </div>
         </div>
       </div>

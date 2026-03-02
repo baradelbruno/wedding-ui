@@ -3,7 +3,6 @@ import { getFullImageUrl } from '../utils/imageUtils'
 import './GiftCard.css'
 
 function GiftCard({ gift, onClick }) {
-  const isPurchased = gift.purchases && gift.purchases.length > 0
   const fullImageUrl = getFullImageUrl(gift.imageUrl)
   
   return (
@@ -28,9 +27,6 @@ function GiftCard({ gift, onClick }) {
             <span>📦</span>
           </div>
         )}
-        {isPurchased && (
-          <div className="gift-card-badge">Reservado</div>
-        )}
       </div>
       
       <div className="gift-card-content">
@@ -47,7 +43,7 @@ function GiftCard({ gift, onClick }) {
             R$ {gift.price.toFixed(2).replace('.', ',')}
           </span>
           <button className="gift-card-button">
-            {isPurchased ? 'Ver Detalhes' : 'Comprar'}
+            Comprar
           </button>
         </div>
       </div>
