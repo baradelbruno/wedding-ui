@@ -179,3 +179,26 @@ export const updateGuestAttendance = (guestId, isAttending, email, phoneNumber) 
     phoneNumber 
   })
 }
+
+/**
+ * Gift-related API calls
+ */
+
+/**
+ * Fetch all gifts
+ */
+export const getGifts = () => get('/Gifts')
+
+/**
+ * Fetch specific gift by ID
+ */
+export const getGiftById = (id) => get(`/Gifts/${id}`)
+
+/**
+ * Purchase a gift
+ * @param {number} giftId - Gift ID
+ * @param {object} purchaseData - Purchase information {purchasedBy, email, phone, pixCode}
+ */
+export const purchaseGift = (giftId, purchaseData) => {
+  return post(`/Gifts/${giftId}/purchase`, purchaseData)
+}
