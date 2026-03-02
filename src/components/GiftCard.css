@@ -32,10 +32,17 @@
 .gift-card-placeholder {
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.gift-card-placeholder.show-placeholder {
+  display: flex;
 }
 
 .gift-card-placeholder span {

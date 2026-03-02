@@ -1,22 +1,30 @@
 import PropTypes from 'prop-types'
+import { getFullImageUrl } from '../utils/imageUtils'
 import './GiftCard.css'
 
 function GiftCard({ gift, onClick }) {
   const isPurchased = gift.purchases && gift.purchases.length > 0
+  const fullImageUrl = getFullImageUrl(gift.imageUrl)
   
   return (
     <div className="gift-card" onClick={() => onClick(gift)}>
       <div className="gift-card-image">
-        {gift.imageUrl ? (
-          <img 
-            src={gift.imageUrl} 
-            alt={gift.name}
-            onError={(e) => {
-              e.target.src = 'https://via.placeholder.com/300x200?text=Sem+Imagem'
-            }}
-          />
+        {fullImageUrl ? (
+          <>
+            <img 
+              src={fullImageUrl} 
+              alt={gift.name}
+              onError={(e) => {
+                e.target.style.display = 'none'
+                e.target.nextElementSibling?.classList.add('show-placeholder')
+              }}
+            />
+            <div className="gift-card-placeholder">
+              <span>📦</span>
+            </div>
+          </>
         ) : (
-          <div className="gift-card-placeholder">
+          <div className="gift-card-placeholder show-placeholder">
             <span>📦</span>
           </div>
         )}

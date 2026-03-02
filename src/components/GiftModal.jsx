@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
+import { getFullImageUrl } from '../utils/imageUtils'
 import './GiftModal.css'
 
 function GiftModal({ gift, onClose, onPurchase }) {
@@ -13,6 +14,7 @@ function GiftModal({ gift, onClose, onPurchase }) {
   const [showSuccess, setShowSuccess] = useState(false)
 
   const isPurchased = gift.purchases && gift.purchases.length > 0
+  const fullImageUrl = getFullImageUrl(gift.imageUrl)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -65,16 +67,22 @@ function GiftModal({ gift, onClose, onPurchase }) {
         
         <div className="gift-modal-content">
           <div className="gift-modal-image">
-            {gift.imageUrl ? (
-              <img 
-                src={gift.imageUrl} 
-                alt={gift.name}
-                onError={(e) => {
-                  e.target.src = 'https://via.placeholder.com/400x300?text=Sem+Imagem'
-                }}
-              />
+            {fullImageUrl ? (
+              <>
+                <img 
+                  src={fullImageUrl} 
+                  alt={gift.name}
+                  onError={(e) => {
+                    e.target.style.display = 'none'
+                    e.target.nextElementSibling?.classList.add('show-placeholder')
+                  }}
+                />
+                <div className="gift-modal-placeholder">
+                  <span>📦</span>
+                </div>
+              </>
             ) : (
-              <div className="gift-modal-placeholder">
+              <div className="gift-modal-placeholder show-placeholder">
                 <span>📦</span>
               </div>
             )}
