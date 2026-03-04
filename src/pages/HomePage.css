@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 40px 60px;
+  padding: 0 40px 60px;
 }
 
 .photo-placeholder {
@@ -146,7 +146,7 @@
 /* Responsive design */
 @media (max-width: 768px) {
   .main-content {
-    padding: 30px 20px;
+    padding: 0 20px 40px;
   }
 
   .photo-placeholder {
