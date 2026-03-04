@@ -4,6 +4,7 @@ import './GiftCard.css'
 
 function GiftCard({ gift, onClick }) {
   const fullImageUrl = getFullImageUrl(gift.imageUrl)
+  const showPrice = typeof gift.price === 'number' && gift.price !== 0
   
   return (
     <div className="gift-card" onClick={() => onClick(gift)}>
@@ -39,9 +40,11 @@ function GiftCard({ gift, onClick }) {
           </p>
         )}
         <div className="gift-card-footer">
-          <span className="gift-card-price">
-            R$ {gift.price.toFixed(2).replace('.', ',')}
-          </span>
+          {showPrice && (
+            <span className="gift-card-price">
+              R$ {gift.price.toFixed(2).replace('.', ',')}
+            </span>
+          )}
           <button className="gift-card-button">
             Comprar
           </button>

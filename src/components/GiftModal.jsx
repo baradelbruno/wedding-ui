@@ -16,6 +16,8 @@ function GiftModal({ gift, onClose, onPurchase }) {
   const [pixPaymentCode, setPixPaymentCode] = useState('')
   const [copyStatus, setCopyStatus] = useState('')
 
+  const showPrice = typeof gift.price === 'number' && gift.price !== 0
+
   const fullImageUrl = getFullImageUrl(gift.imageUrl)
 
   const handleInputChange = (e) => {
@@ -137,10 +139,12 @@ function GiftModal({ gift, onClose, onPurchase }) {
               <p className="gift-modal-description">{gift.description}</p>
             )}
             
-            <div className="gift-modal-price">
-              <span className="price-label">Valor:</span>
-              <span className="price-value">R$ {gift.price.toFixed(2).replace('.', ',')}</span>
-            </div>
+            {showPrice && (
+              <div className="gift-modal-price">
+                <span className="price-label">Valor:</span>
+                <span className="price-value">R$ {gift.price.toFixed(2).replace('.', ',')}</span>
+              </div>
+            )}
 
             {step === 'form' ? (
               <form className="gift-modal-form" onSubmit={handleContinuePurchase}>
