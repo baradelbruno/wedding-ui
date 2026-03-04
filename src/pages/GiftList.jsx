@@ -53,7 +53,7 @@ function GiftList() {
         <div className="gift-list-header">
           <h1>Lista de Presentes</h1>
           <p className="gift-list-subtitle">
-            Escolha um presente para nos ajudar a começar nossa nova vida juntos
+            Sua presença já é o nosso melhor presente, mas se quiser nos ajudar a realizar nossos sonhos, aqui estão algumas sugestões de presentes.
           </p>
         </div>
 
