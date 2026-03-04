@@ -1,6 +1,6 @@
 .header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -17,18 +17,17 @@
 
 .logo-container {
   padding: 8px 16px;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
+  background-color: transparent;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: none;
+  transition: opacity 0.2s ease;
 }
 
 .logo-container:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0.85;
 }
 
 .logo-image {
@@ -47,48 +46,42 @@
   padding: 12px 28px;
   font-size: 15px;
   font-weight: 600;
-  border: none;
-  border-radius: 25px;
+  border: 1px solid #212529;
+  border-radius: 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   white-space: nowrap;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
 }
 
 .nav-button.primary {
   background-color: #ffffff;
-  color: #667eea;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #212529;
+  box-shadow: none;
 }
 
 .nav-button.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   background-color: #f8f9fa;
 }
 
 .nav-button.secondary {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  background-color: #ffffff;
+  color: #212529;
+  border-color: #212529;
 }
 
 .nav-button.secondary:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.8);
-  transform: translateY(-2px);
+  background-color: #f8f9fa;
 }
 
 .back-button {
-  background-color: rgba(255, 255, 255, 0.95);
-  color: #667eea;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #212529;
+  box-shadow: none;
 }
 
 .back-button:hover {
-  background-color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background-color: #f8f9fa;
 }
 
 /* Responsive design */
