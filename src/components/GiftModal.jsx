@@ -90,6 +90,19 @@ function GiftModal({ gift, onClose, onPurchase }) {
     }
   }
 
+  if (step === 'thanks') {
+    return (
+      <div className="gift-modal-backdrop" onClick={handleBackdropClick}>
+        <div className="gift-modal gift-modal-success">
+          <button className="gift-modal-close" onClick={onClose}>×</button>
+          <div className="success-icon">✓</div>
+          <h2>Muito obrigado pelo seu presente!</h2>
+          <p>Estamos muito ansiosos para te ver no dia do nosso casamento!</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="gift-modal-backdrop" onClick={handleBackdropClick}>
       <div className="gift-modal">
@@ -206,8 +219,8 @@ function GiftModal({ gift, onClose, onPurchase }) {
                   </div>
                 )}
 
-                <button type="button" className="gift-modal-submit" onClick={onClose}>
-                  Fechar
+                <button type="button" className="gift-modal-submit" onClick={() => setStep('thanks')}>
+                  Fiz o pagamento!
                 </button>
               </div>
             )}
