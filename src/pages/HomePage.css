@@ -91,6 +91,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
+  flex-wrap: wrap;
   margin-top: 24px;
   padding: 20px;
   background-color: #ffffff;
@@ -98,6 +99,19 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+}
+
+.address-display.copied {
+  background-color: #f8f9fa;
+}
+
+.address-copy-status {
+  flex-basis: 100%;
+  text-align: center;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6c757d;
 }
 
 .address-display:focus {

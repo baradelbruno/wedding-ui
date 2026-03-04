@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './HomePage.css'
 import Header from '../components/Header'
 import mainImage from '../Assets/main-image.jpg'
@@ -6,6 +7,8 @@ import mainImage from '../Assets/main-image.jpg'
 const VENUE_ADDRESS = "Avenida das Flores, 30 - Distrito do Porto, Capela do Alto - SP, 18195-000"
 
 function HomePage() {
+  const [addressCopyStatus, setAddressCopyStatus] = useState('')
+
   // Encode address for Google Maps URL
   const encodedAddress = encodeURIComponent(VENUE_ADDRESS)
   const mapUrl = `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodedAddress}`
@@ -16,6 +19,8 @@ function HomePage() {
     try {
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(VENUE_ADDRESS)
+        setAddressCopyStatus('Copiado!')
+        setTimeout(() => setAddressCopyStatus(''), 2000)
         return
       }
 
@@ -28,8 +33,13 @@ function HomePage() {
       textArea.select()
       document.execCommand('copy')
       document.body.removeChild(textArea)
+
+      setAddressCopyStatus('Copiado!')
+      setTimeout(() => setAddressCopyStatus(''), 2000)
     } catch (err) {
       console.error('Erro ao copiar endereço:', err)
+      setAddressCopyStatus('Não foi possível copiar')
+      setTimeout(() => setAddressCopyStatus(''), 2000)
     }
   }
 
@@ -61,7 +71,7 @@ function HomePage() {
           </div>
           
           <div
-            className="address-display"
+            className={`address-display${addressCopyStatus ? ' copied' : ''}`}
             role="button"
             tabIndex={0}
             title="Clique para copiar"
@@ -82,6 +92,9 @@ function HomePage() {
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
             </svg>
             <span className="address-text">{VENUE_ADDRESS}</span>
+            {addressCopyStatus && (
+              <span className="address-copy-status">{addressCopyStatus}</span>
+            )}
           </div>
         </div>
       </main>
