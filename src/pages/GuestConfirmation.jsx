@@ -180,18 +180,6 @@ function GuestConfirmation() {
                 </div>
               </div>
             )}
-
-            <div style={{ 
-              marginTop: '30px', 
-              fontSize: '14px', 
-              color: '#6c757d',
-              textAlign: 'center',
-              padding: '12px',
-              background: '#f8f9fa',
-              borderRadius: '8px'
-            }}>
-              {guests.length} convidado{guests.length !== 1 ? 's' : ''} no sistema
-            </div>
           </>
         )}
       </div>
