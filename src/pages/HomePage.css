@@ -23,6 +23,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  position: relative;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -36,6 +37,30 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  backdrop-filter: blur(2px);
+}
+
+.hero-overlay-title {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.hero-overlay-date {
+  margin-top: 6px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 /* Location Section */
@@ -100,6 +125,21 @@
   .photo-placeholder {
     height: 350px;
     border-radius: 16px;
+  }
+
+  .hero-overlay {
+    top: 16px;
+    left: 16px;
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+
+  .hero-overlay-title {
+    font-size: 20px;
+  }
+
+  .hero-overlay-date {
+    font-size: 16px;
   }
 
   .location-section {

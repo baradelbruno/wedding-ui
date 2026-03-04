@@ -19,6 +19,10 @@ function HomePage() {
       <main className="main-content">
         <div className="photo-placeholder">
           <img src={mainImage} alt="Wedding Photo" className="main-image" />
+          <div className="hero-overlay">
+            <div className="hero-overlay-title">Casamento Larissa &amp; Bruno</div>
+            <div className="hero-overlay-date">08.08.2026</div>
+          </div>
         </div>
 
         <div className="location-section">
