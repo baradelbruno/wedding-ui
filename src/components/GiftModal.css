@@ -232,6 +232,59 @@
   box-sizing: border-box;
 }
 
+.gift-modal-pix-code {
+  text-align: left;
+  margin: 0 0 20px 0;
+}
+
+.gift-modal-pix-code-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #495057;
+}
+
+.gift-modal-pix-code-value {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #212529;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.gift-modal-pix-code-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.gift-modal-copy {
+  padding: 10px 14px;
+  background: #f8f9fa;
+  color: #212529;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gift-modal-copy:hover {
+  transform: translateY(-1px);
+}
+
+.gift-modal-copy-status {
+  font-size: 13px;
+  color: #6c757d;
+}
+
 .gift-modal-purchased {
   text-align: center;
   padding: 24px;

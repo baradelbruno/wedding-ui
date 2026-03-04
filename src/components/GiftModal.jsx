@@ -13,6 +13,8 @@ function GiftModal({ gift, onClose, onPurchase }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [step, setStep] = useState('form')
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState('')
+  const [pixPaymentCode, setPixPaymentCode] = useState('')
+  const [copyStatus, setCopyStatus] = useState('')
 
   const fullImageUrl = getFullImageUrl(gift.imageUrl)
 
@@ -32,13 +34,15 @@ function GiftModal({ gift, onClose, onPurchase }) {
     try {
       const purchase = await onPurchase(gift.id, purchaseData)
 
-      const pixPaymentCode = (purchase?.pixCode || '').trim()
-      if (!pixPaymentCode) {
+      const code = (purchase?.pixCode || '').trim()
+      if (!code) {
         alert('PIX não configurado para este presente.')
         return
       }
 
-      const dataUrl = await QRCode.toDataURL(pixPaymentCode, {
+      setPixPaymentCode(code)
+
+      const dataUrl = await QRCode.toDataURL(code, {
         width: 280,
         margin: 1,
       })
@@ -50,6 +54,33 @@ function GiftModal({ gift, onClose, onPurchase }) {
       alert('Erro ao processar compra. Tente novamente.')
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  const handleCopyPixCode = async () => {
+    if (!pixPaymentCode) return
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(pixPaymentCode)
+      } else {
+        const textArea = document.createElement('textarea')
+        textArea.value = pixPaymentCode
+        textArea.setAttribute('readonly', '')
+        textArea.style.position = 'fixed'
+        textArea.style.left = '-9999px'
+        document.body.appendChild(textArea)
+        textArea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textArea)
+      }
+
+      setCopyStatus('Código copiado!')
+      setTimeout(() => setCopyStatus(''), 2000)
+    } catch (err) {
+      console.error('Erro ao copiar código PIX:', err)
+      setCopyStatus('Não foi possível copiar')
+      setTimeout(() => setCopyStatus(''), 2000)
     }
   }
 
@@ -150,12 +181,31 @@ function GiftModal({ gift, onClose, onPurchase }) {
             ) : (
               <div className="gift-modal-pix">
                 <h3>Pagamento via PIX</h3>
-                <p className="gift-modal-pix-instructions">Escaneie o QR Code para concluir o pagamento.</p>
+                <p className="gift-modal-pix-instructions">Abra a área pix do seu aplicativo bancário e escaneie o QR CODE</p>
                 {qrCodeDataUrl ? (
                   <img className="gift-modal-pix-qr" src={qrCodeDataUrl} alt="QR Code PIX" />
                 ) : (
                   <p className="gift-modal-pix-instructions">Gerando QR Code...</p>
                 )}
+
+                {!!pixPaymentCode && (
+                  <div className="gift-modal-pix-code">
+                    <label className="gift-modal-pix-code-label">Código PIX (copia e cola)</label>
+                    <textarea
+                      className="gift-modal-pix-code-value"
+                      readOnly
+                      value={pixPaymentCode}
+                      rows={4}
+                    />
+                    <div className="gift-modal-pix-code-actions">
+                      <button type="button" className="gift-modal-copy" onClick={handleCopyPixCode}>
+                        Copiar código
+                      </button>
+                      {copyStatus && <span className="gift-modal-copy-status">{copyStatus}</span>}
+                    </div>
+                  </div>
+                )}
+
                 <button type="button" className="gift-modal-submit" onClick={onClose}>
                   Fechar
                 </button>
