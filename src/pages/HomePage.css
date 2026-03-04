@@ -16,7 +16,7 @@
 .photo-placeholder {
   width: 100vw;
   max-width: none;
-  height: 500px;
+  height: 100vh;
   border-radius: 0;
   background-color: #ffffff;
   display: flex;
@@ -150,7 +150,7 @@
   }
 
   .photo-placeholder {
-    height: 350px;
+    height: 100vh;
     border-radius: 0;
   }
 
