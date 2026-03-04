@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './HomePage.css'
 import Header from '../components/Header'
-import mainImage from '../Assets/main-image.jpg'
+import mainImage from '../Assets/main-image.jpeg'
 
 // Easily configurable address
 const VENUE_ADDRESS = "Avenida das Flores, 30 - Distrito do Porto, Capela do Alto - SP, 18195-000"
