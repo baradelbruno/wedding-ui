@@ -49,10 +49,10 @@
   padding: 0;
   border-radius: 0;
   background: transparent;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(0, 0, 0, 0.85);
   text-align: center;
   font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.45);
+  text-shadow: none;
   pointer-events: none;
 }
 
@@ -68,14 +68,14 @@
   font-size: clamp(18px, 2.2vw, 28px);
   font-weight: 400;
   letter-spacing: 6px;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .hero-overlay-divider {
   width: 72px;
   height: 1px;
   margin: 18px auto 0;
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .hero-overlay-place {
@@ -84,7 +84,7 @@
   font-weight: 600;
   letter-spacing: 5px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 /* Location Section */
