@@ -40,7 +40,7 @@ function GuestSearch({ guests, onSelectGuest }) {
             outline: 'none',
             fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Roboto\', \'Oxygen\', \'Ubuntu\', \'Cantarell\', sans-serif'
           }}
-          onFocus={(e) => e.target.style.borderColor = '#667eea'}
+          onFocus={(e) => e.target.style.borderColor = 'black'}
           onBlur={(e) => e.target.style.borderColor = '#e9ecef'}
         />
         
