@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
+import QRCode from 'qrcode'
 import { getFullImageUrl } from '../utils/imageUtils'
 import './GiftModal.css'
 
@@ -7,11 +8,11 @@ function GiftModal({ gift, onClose, onPurchase }) {
   const [purchaseData, setPurchaseData] = useState({
     purchasedBy: '',
     email: '',
-    phone: '',
-    pixCode: ''
+    phone: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [showSuccess, setShowSuccess] = useState(false)
+  const [step, setStep] = useState('form')
+  const [qrCodeDataUrl, setQrCodeDataUrl] = useState('')
 
   const fullImageUrl = getFullImageUrl(gift.imageUrl)
 
@@ -23,16 +24,27 @@ function GiftModal({ gift, onClose, onPurchase }) {
     }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleContinuePurchase = async (e) => {
     e.preventDefault()
+
     setIsSubmitting(true)
 
     try {
-      await onPurchase(gift.id, purchaseData)
-      setShowSuccess(true)
-      setTimeout(() => {
-        onClose()
-      }, 2000)
+      const purchase = await onPurchase(gift.id, purchaseData)
+
+      const pixPaymentCode = (purchase?.pixCode || '').trim()
+      if (!pixPaymentCode) {
+        alert('PIX não configurado para este presente.')
+        return
+      }
+
+      const dataUrl = await QRCode.toDataURL(pixPaymentCode, {
+        width: 280,
+        margin: 1,
+      })
+
+      setQrCodeDataUrl(dataUrl)
+      setStep('pix')
     } catch (error) {
       console.error('Erro ao comprar presente:', error)
       alert('Erro ao processar compra. Tente novamente.')
@@ -45,18 +57,6 @@ function GiftModal({ gift, onClose, onPurchase }) {
     if (e.target.className === 'gift-modal-backdrop') {
       onClose()
     }
-  }
-
-  if (showSuccess) {
-    return (
-      <div className="gift-modal-backdrop" onClick={handleBackdropClick}>
-        <div className="gift-modal gift-modal-success">
-          <div className="success-icon">✓</div>
-          <h2>Presente Reservado!</h2>
-          <p>Obrigado por sua compra. Em breve entraremos em contato.</p>
-        </div>
-      </div>
-    )
   }
 
   return (
@@ -98,68 +98,69 @@ function GiftModal({ gift, onClose, onPurchase }) {
               <span className="price-value">R$ {gift.price.toFixed(2).replace('.', ',')}</span>
             </div>
 
-            <form className="gift-modal-form" onSubmit={handleSubmit}>
-              <h3>Comprar este Presente</h3>
-              
-              <div className="form-group">
-                <label htmlFor="purchasedBy">Seu Nome *</label>
-                <input
-                  type="text"
-                  id="purchasedBy"
-                  name="purchasedBy"
-                  value={purchaseData.purchasedBy}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="Digite seu nome completo"
-                />
-              </div>
+            {step === 'form' ? (
+              <form className="gift-modal-form" onSubmit={handleContinuePurchase}>
+                <h3>Comprar este Presente</h3>
+                
+                <div className="form-group">
+                  <label htmlFor="purchasedBy">Seu Nome *</label>
+                  <input
+                    type="text"
+                    id="purchasedBy"
+                    name="purchasedBy"
+                    value={purchaseData.purchasedBy}
+                    onChange={handleInputChange}
+                    required
+                    placeholder="Digite seu nome completo"
+                  />
+                </div>
 
-              <div className="form-group">
-                <label htmlFor="email">E-mail</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={purchaseData.email}
-                  onChange={handleInputChange}
-                  placeholder="seu@email.com"
-                />
-              </div>
+                <div className="form-group">
+                  <label htmlFor="email">E-mail</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={purchaseData.email}
+                    onChange={handleInputChange}
+                    placeholder="seu@email.com"
+                  />
+                </div>
 
-              <div className="form-group">
-                <label htmlFor="phone">Telefone</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={purchaseData.phone}
-                  onChange={handleInputChange}
-                  placeholder="(00) 00000-0000"
-                />
-              </div>
+                <div className="form-group">
+                  <label htmlFor="phone">Telefone</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={purchaseData.phone}
+                    onChange={handleInputChange}
+                    placeholder="(00) 00000-0000"
+                  />
+                </div>
 
-              <div className="form-group">
-                <label htmlFor="pixCode">Chave PIX (para receber código de pagamento) *</label>
-                <input
-                  type="text"
-                  id="pixCode"
-                  name="pixCode"
-                  value={purchaseData.pixCode}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="CPF, E-mail, Telefone ou Chave Aleatória"
-                />
-                <small>Você receberá um código PIX para pagamento</small>
+                <button 
+                  type="submit" 
+                  className="gift-modal-submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Processando...' : 'Continuar compra'}
+                </button>
+              </form>
+            ) : (
+              <div className="gift-modal-pix">
+                <h3>Pagamento via PIX</h3>
+                <p className="gift-modal-pix-instructions">Escaneie o QR Code para concluir o pagamento.</p>
+                {qrCodeDataUrl ? (
+                  <img className="gift-modal-pix-qr" src={qrCodeDataUrl} alt="QR Code PIX" />
+                ) : (
+                  <p className="gift-modal-pix-instructions">Gerando QR Code...</p>
+                )}
+                <button type="button" className="gift-modal-submit" onClick={onClose}>
+                  Fechar
+                </button>
               </div>
-
-              <button 
-                type="submit" 
-                className="gift-modal-submit"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Processando...' : 'Confirmar Compra'}
-              </button>
-            </form>
+            )}
           </div>
         </div>
       </div>

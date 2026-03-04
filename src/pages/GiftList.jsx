@@ -39,9 +39,10 @@ function GiftList() {
   }
 
   const handlePurchase = async (giftId, purchaseData) => {
-    await purchaseGift(giftId, purchaseData)
+    const purchase = await purchaseGift(giftId, purchaseData)
     // Reload gifts to update the purchased status
     await loadGifts()
+    return purchase
   }
 
   return (

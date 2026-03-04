@@ -209,6 +209,29 @@
   cursor: not-allowed;
 }
 
+.gift-modal-pix {
+  text-align: center;
+}
+
+.gift-modal-pix-instructions {
+  color: #6c757d;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+
+.gift-modal-pix-qr {
+  display: block;
+  width: 280px;
+  height: 280px;
+  margin: 0 auto 20px auto;
+  padding: 12px;
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
 .gift-modal-purchased {
   text-align: center;
   padding: 24px;

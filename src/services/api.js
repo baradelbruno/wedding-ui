@@ -197,7 +197,7 @@ export const getGiftById = (id) => get(`/Gifts/${id}`)
 /**
  * Purchase a gift
  * @param {number} giftId - Gift ID
- * @param {object} purchaseData - Purchase information {purchasedBy, email, phone, pixCode}
+ * @param {object} purchaseData - Purchase information {purchasedBy, email, phone}
  */
 export const purchaseGift = (giftId, purchaseData) => {
   return post(`/Gifts/${giftId}/purchase`, purchaseData)
