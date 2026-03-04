@@ -53,6 +53,7 @@ function HomePage() {
           <div className="hero-overlay">
             <div className="hero-overlay-title">Larissa e Bruno</div>
             <div className="hero-overlay-date">08 . 08 . 2026</div>
+            <div className="hero-overlay-divider" />
             <div className="hero-overlay-place">Capela do Alto</div>
           </div>
         </div>
