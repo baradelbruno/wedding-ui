@@ -66,6 +66,12 @@
   letter-spacing: 0.5px;
 }
 
+.hero-overlay-place {
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
 /* Location Section */
 .location-section {
   width: 100%;
@@ -167,6 +173,10 @@
 
   .hero-overlay-date {
     font-size: 16px;
+  }
+
+  .hero-overlay-place {
+    font-size: 14px;
   }
 
   .location-section {
