@@ -94,6 +94,16 @@
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.address-display:focus {
+  outline: none;
+}
+
+.address-display:focus-visible {
+  outline: 3px solid rgba(102, 126, 234, 0.25);
+  outline-offset: 3px;
 }
 
 .address-display:hover {

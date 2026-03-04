@@ -12,6 +12,27 @@ function HomePage() {
   // Alternative without API key (using search query):
   const mapUrlAlt = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=15&ie=UTF8&iwloc=&output=embed`
 
+  const copyAddressToClipboard = async () => {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(VENUE_ADDRESS)
+        return
+      }
+
+      const textArea = document.createElement('textarea')
+      textArea.value = VENUE_ADDRESS
+      textArea.setAttribute('readonly', '')
+      textArea.style.position = 'fixed'
+      textArea.style.left = '-9999px'
+      document.body.appendChild(textArea)
+      textArea.select()
+      document.execCommand('copy')
+      document.body.removeChild(textArea)
+    } catch (err) {
+      console.error('Erro ao copiar endereço:', err)
+    }
+  }
+
   return (
     <div className="home-page">
       <Header />
@@ -39,7 +60,19 @@ function HomePage() {
             />
           </div>
           
-          <div className="address-display">
+          <div
+            className="address-display"
+            role="button"
+            tabIndex={0}
+            title="Clique para copiar"
+            onClick={copyAddressToClipboard}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                copyAddressToClipboard()
+              }
+            }}
+          >
             <svg 
               className="location-icon" 
               xmlns="http://www.w3.org/2000/svg" 
