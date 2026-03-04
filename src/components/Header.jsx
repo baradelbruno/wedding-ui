@@ -28,6 +28,12 @@ function Header() {
             >
               Lista de Presentes
             </button>
+            <button 
+              className="nav-button secondary"
+              onClick={() => navigate('/informacoes-gerais')}
+            >
+              Informações Gerais
+            </button>
           </nav>
         ) : (
           <nav className="nav-buttons">
