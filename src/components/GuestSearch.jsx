@@ -1,23 +1,49 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function GuestSearch({ guests, onSelectGuest }) {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedGuest, setSelectedGuest] = useState(null)
+  const [nameInput, setNameInput] = useState('')
+  const [errorMessage, setErrorMessage] = useState(null)
+  const [isValidating, setIsValidating] = useState(false)
 
-  // Filter guests based on search term
-  const filteredGuests = guests.filter(guest =>
-    guest.name.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  // Check for exact match when user stops typing
+  useEffect(() => {
+    if (!nameInput.trim()) {
+      setErrorMessage(null)
+      onSelectGuest(null)
+      return
+    }
 
-  const handleSelectGuest = (guest) => {
-    setSelectedGuest(guest)
-    setSearchTerm(guest.name)
-    onSelectGuest(guest)
+    // Debounce the validation
+    const timeoutId = setTimeout(() => {
+      validateName(nameInput.trim())
+    }, 800)
+
+    return () => clearTimeout(timeoutId)
+  }, [nameInput, guests])
+
+  const validateName = (name) => {
+    setIsValidating(true)
+    
+    // Find exact match (case-insensitive)
+    const matchedGuest = guests.find(
+      guest => guest.name.toLowerCase() === name.toLowerCase()
+    )
+
+    if (matchedGuest) {
+      setErrorMessage(null)
+      onSelectGuest(matchedGuest)
+    } else {
+      setErrorMessage('Nome não encontrado na lista de convidados. Por favor, verifique se digitou corretamente.')
+      onSelectGuest(null)
+    }
+    
+    setIsValidating(false)
   }
 
-  const handleSearchChange = (value) => {
-    setSearchTerm(value)
-    setSelectedGuest(null)
+  const handleInputChange = (value) => {
+    setNameInput(value)
+    setErrorMessage(null)
+    setIsValidating(true)
     onSelectGuest(null)
   }
 
@@ -26,69 +52,53 @@ function GuestSearch({ guests, onSelectGuest }) {
       <div style={{ position: 'relative' }}>
         <input
           type="text"
-          value={searchTerm}
-          onChange={(e) => handleSearchChange(e.target.value)}
-          placeholder="Digite o seu nome"
+          value={nameInput}
+          onChange={(e) => handleInputChange(e.target.value)}
+          placeholder="Digite seu nome completo"
           style={{
             width: '100%',
             padding: '16px 20px',
             fontSize: '16px',
             borderRadius: '12px',
-            border: '2px solid #e9ecef',
+            border: errorMessage ? '2px solid #dc3545' : '2px solid #e9ecef',
             boxSizing: 'border-box',
             transition: 'all 0.3s ease',
             outline: 'none',
-            fontFamily: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Roboto\', \'Oxygen\', \'Ubuntu\', \'Cantarell\', sans-serif'
+            fontFamily: 'Lato, -apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Roboto\', sans-serif'
           }}
-          onFocus={(e) => e.target.style.borderColor = '#7a0000'}
-          onBlur={(e) => e.target.style.borderColor = '#e9ecef'}
+          onFocus={(e) => {
+            if (!errorMessage) e.target.style.borderColor = '#7a0000'
+          }}
+          onBlur={(e) => {
+            if (!errorMessage) e.target.style.borderColor = '#e9ecef'
+          }}
         />
         
-        {searchTerm && filteredGuests.length > 0 && !selectedGuest && (
+        {isValidating && nameInput.trim() && (
           <div style={{
             position: 'absolute',
-            top: 'calc(100% + 8px)',
-            left: 0,
-            right: 0,
-            maxHeight: '300px',
-            overflowY: 'auto',
-            background: 'white',
-            borderRadius: '12px',
-            marginTop: '5px',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
-            zIndex: 1000
+            right: '16px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            color: '#6c757d',
+            fontSize: '14px'
           }}>
-            {filteredGuests.map(guest => (
-              <div
-                key={guest.id}
-                onClick={() => handleSelectGuest(guest)}
-                style={{
-                  padding: '16px 20px',
-                  cursor: 'pointer',
-                  borderBottom: '1px solid #f1f3f5',
-                  transition: 'background 0.2s ease',
-                  fontSize: '15px'
-                }}
-                onMouseEnter={(e) => e.target.style.background = '#f8f9fa'}
-                onMouseLeave={(e) => e.target.style.background = 'white'}
-              >
-                {guest.name}
-              </div>
-            ))}
+            Verificando...
           </div>
         )}
 
-        {searchTerm && filteredGuests.length === 0 && (
+        {errorMessage && (
           <div style={{
             marginTop: '12px',
             padding: '16px',
-            background: '#fff3cd',
+            background: 'linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%)',
             borderRadius: '12px',
-            color: '#856404',
+            color: '#721c24',
             fontSize: '14px',
-            textAlign: 'center'
+            textAlign: 'center',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
           }}>
-            Nenhum convidado encontrado com "{searchTerm}"
+            {errorMessage}
           </div>
         )}
       </div>
