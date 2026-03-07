@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
+  background: var(--color-background);
 }
 
 .main-content {
@@ -10,15 +10,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 40px 60px;
 }
 
+/* Hero Section */
 .photo-placeholder {
   width: 100vw;
   max-width: none;
   height: 100vh;
+  min-height: 600px;
   border-radius: 0;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,18 +28,13 @@
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   box-shadow: none;
-  transition: none;
-}
-
-.photo-placeholder:hover {
-  transform: none;
-  box-shadow: none;
 }
 
 .main-image {
   width: 100%;
-  height: 100%;
+  height: 87%;
   object-fit: cover;
+  filter: brightness(0.92);
 }
 
 .hero-overlay {
@@ -46,60 +42,122 @@
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 0;
+  padding: 2rem;
   border-radius: 0;
   background: transparent;
-  color: rgba(0, 0, 0, 0.85);
+  color: rgba(44, 62, 80, 0.9);
   text-align: center;
-  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-  text-shadow: none;
+  font-family: var(--font-heading);
+  text-shadow: 0 2px 8px rgba(255, 255, 255, 0.3);
   pointer-events: none;
+  animation: heroFadeIn 1.2s ease;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .hero-overlay-title {
-  font-family: 'Great Vibes', 'Brush Script MT', 'Segoe Script', cursive;
-  font-size: clamp(52px, 7.5vw, 104px);
+  font-family: var(--font-script);
+  font-size: clamp(3.5rem, 8vw, 7rem);
   font-weight: 400;
-  line-height: 1.02;
+  line-height: 1.1;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
 }
 
 .hero-overlay-date {
-  margin-top: 18px;
-  font-size: clamp(20px, 2.4vw, 30px);
+  margin-top: 1.5rem;
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
   font-weight: 400;
-  letter-spacing: 6px;
-  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: 8px;
+  color: var(--color-text-light);
+  font-family: var(--font-heading);
 }
 
 .hero-overlay-divider {
-  width: 80px;
-  height: 1px;
-  margin: 18px auto 0;
-  background: rgba(0, 0, 0, 0.4);
+  width: 100px;
+  height: 2px;
+  margin: 1.5rem auto;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
 }
 
 .hero-overlay-place {
-  margin-top: 16px;
-  font-size: clamp(20px, 2.2vw, 28px);
-  font-weight: 600;
-  letter-spacing: 5px;
+  margin-top: 1.25rem;
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: 6px;
   text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.7);
+  color: var(--color-text-light);
+  font-family: var(--font-heading);
+}
+
+/* Welcome Section */
+.welcome-section {
+  width: 100%;
+  padding: 5rem 2rem;
+  background: var(--color-white);
+  animation: fadeIn 0.8s ease 0.3s backwards;
+}
+
+.section-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 500;
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.section-divider {
+  width: 80px;
+  height: 2px;
+  margin: 0 auto 2.5rem;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+}
+
+.welcome-text {
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  line-height: 1.8;
+  color: var(--color-text-light);
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-family: var(--font-primary);
 }
 
 /* Location Section */
 .location-section {
   width: 100%;
-  max-width: 1200px;
-  margin-top: 60px;
+  padding: 5rem 2rem;
+  background: var(--color-background);
+  animation: fadeIn 0.8s ease 0.5s backwards;
 }
 
 .map-container {
   width: 100%;
+  max-width: 1000px;
+  margin: 3rem auto 2rem;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  box-shadow: var(--shadow-lg);
+  background-color: var(--color-white);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.map-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
 }
 
 .map-container iframe {
@@ -111,49 +169,99 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 1rem;
   flex-wrap: wrap;
-  margin-top: 24px;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 2rem auto 0;
+  max-width: 800px;
+  padding: 1.5rem 2rem;
+  background: var(--color-white);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
   cursor: pointer;
+  border: 2px solid transparent;
 }
 
 .address-display.copied {
-  background-color: #f8f9fa;
+  background: var(--color-accent-light);
+  border-color: var(--color-accent);
 }
 
 .address-copy-status {
   flex-basis: 100%;
   text-align: center;
-  margin-top: 6px;
-  font-size: 13px;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: #6c757d;
+  color: var(--color-accent);
 }
 
 .address-display:focus {
   outline: none;
-}
-
-.address-display:focus-visible {
-  outline: 3px solid rgba(102, 126, 234, 0.25);
-  outline-offset: 3px;
+  border-color: var(--color-accent);
 }
 
 .address-display:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-accent);
 }
 
 .location-icon {
   width: 28px;
   height: 28px;
-  color: #d63384;
+  color: var(--color-accent);
   flex-shrink: 0;
+}
+
+.address-text {
+  font-size: 1rem;
+  color: var(--color-text);
+  font-weight: 500;
+  text-align: center;
+  font-family: var(--font-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .photo-placeholder {
+    min-height: 500px;
+    height: 85vh;
+  }
+
+  .hero-overlay {
+    padding: 1rem;
+    width: 90%;
+  }
+
+  .welcome-section,
+  .location-section {
+    padding: 3rem 1rem;
+  }
+
+  .welcome-text {
+    font-size: 1rem;
+  }
+
+  .address-display {
+    padding: 1.25rem 1rem;
+    margin: 1.5rem 1rem 0;
+  }
+
+  .address-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-placeholder {
+    min-height: 400px;
+    height: 70vh;
+  }
+
+  .hero-overlay-title {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+  }
 }
 
 .address-text {

@@ -4,24 +4,26 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(44, 62, 80, 0.85);
+  backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 20px;
+  padding: 1.5rem;
   overflow-y: auto;
 }
 
 .gift-modal {
-  background: white;
-  border-radius: 20px;
-  max-width: 900px;
+  background: var(--color-white);
+  border-radius: 24px;
+  max-width: 950px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  animation: modalSlideIn 0.3s ease;
+  animation: modalSlideIn 0.4s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes modalSlideIn {
@@ -37,27 +39,31 @@
 
 .gift-modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  width: 40px;
-  height: 40px;
+  top: 1rem;
+  right: 1rem;
+  background: var(--color-white);
+  color: var(--color-primary);
+  border: 2px solid var(--color-secondary);
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  font-size: 28px;
+  font-size: 24px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
   line-height: 1;
+  box-shadow: var(--shadow-sm);
 }
 
 .gift-modal-close:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--color-accent);
+  color: var(--color-white);
+  border-color: var(--color-accent);
   transform: rotate(90deg);
+  box-shadow: var(--shadow-md);
 }
 
 .gift-modal-content {
@@ -67,12 +73,12 @@
 }
 
 .gift-modal-image {
-  background: #f8f9fa;
-  min-height: 400px;
+  background: var(--color-background-alt);
+  min-height: 450px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 20px 0 0 20px;
+  border-radius: 24px 0 0 24px;
   overflow: hidden;
   position: relative;
 }
@@ -89,7 +95,7 @@
   display: none;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--color-accent-light) 0%, var(--color-accent) 100%);
   position: absolute;
   top: 0;
   left: 0;
@@ -104,78 +110,87 @@
 }
 
 .gift-modal-info {
-  padding: 40px;
+  padding: 2.5rem;
 }
 
 .gift-modal-info h2 {
-  margin: 0 0 16px 0;
-  font-size: 28px;
-  color: #212529;
-  font-weight: 700;
+  margin: 0 0 1.25rem 0;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-family: var(--font-heading);
 }
 
 .gift-modal-description {
-  color: #6c757d;
-  font-size: 16px;
-  line-height: 1.6;
-  margin: 0 0 24px 0;
+  color: var(--color-text-light);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin: 0 0 1.75rem 0;
+  font-family: var(--font-primary);
 }
 
 .gift-modal-price {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 32px;
-  padding: 16px;
-  background: #f8f9fa;
-  border-radius: 12px;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--color-accent-light);
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .price-label {
-  font-size: 16px;
-  color: #6c757d;
+  font-size: 1rem;
+  color: var(--color-text-light);
   font-weight: 500;
+  font-family: var(--font-primary);
 }
 
 .price-value {
-  font-size: 32px;
-  color: #28a745;
+  font-size: 2.25rem;
+  color: var(--color-accent);
   font-weight: 700;
+  font-family: var(--font-heading);
 }
 
 .gift-modal-form h3 {
-  font-size: 20px;
-  margin: 0 0 24px 0;
-  color: #212529;
+  font-size: 1.5rem;
+  margin: 0 0 1.75rem 0;
+  color: var(--color-primary);
   font-weight: 600;
+  font-family: var(--font-heading);
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: #495057;
+  color: var(--color-primary);
+  font-family: var(--font-primary);
 }
 
 .form-group input {
   width: 100%;
-  padding: 12px 16px;
-  border: 2px solid #e9ecef;
-  border-radius: 8px;
-  font-size: 15px;
-  transition: all 0.3s ease;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--color-secondary);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all var(--transition-base);
   box-sizing: border-box;
+  font-family: var(--font-primary);
+  background: var(--color-white);
 }
 
 .form-group input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
 }
 
 .form-group small {
@@ -187,25 +202,29 @@
 
 .gift-modal-submit {
   width: 100%;
-  padding: 14px;
-  background: black;
-  color: white;
+  padding: 1rem;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #1a2a3a 100%);
+  color: var(--color-white);
   border: none;
-  border-radius: 10px;
-  font-size: 16px;
+  border-radius: 50px;
+  font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 8px;
+  transition: all var(--transition-base);
+  margin-top: 0.75rem;
+  font-family: var(--font-primary);
+  letter-spacing: 0.3px;
+  box-shadow: var(--shadow-md);
 }
 
 .gift-modal-submit:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--color-accent) 0%, #b8930c 100%);
 }
 
 .gift-modal-submit:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
@@ -214,147 +233,169 @@
 }
 
 .gift-modal-pix-instructions {
-  color: #6c757d;
-  font-size: 15px;
-  line-height: 1.6;
-  margin: 0 0 16px 0;
+  color: var(--color-text-light);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0 0 1.25rem 0;
+  font-family: var(--font-primary);
 }
 
 .gift-modal-pix-qr {
   display: block;
   width: 280px;
   height: 280px;
-  margin: 0 auto 20px auto;
-  padding: 12px;
-  background: white;
-  border: 2px solid #e9ecef;
-  border-radius: 12px;
+  margin: 0 auto 1.5rem auto;
+  padding: 1rem;
+  background: var(--color-white);
+  border: 2px solid var(--color-accent-light);
+  border-radius: 16px;
   box-sizing: border-box;
 }
 
 .gift-modal-pix-code {
   text-align: left;
-  margin: 0 0 20px 0;
+  margin: 0 0 1.5rem 0;
 }
 
 .gift-modal-pix-code-label {
   display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: #495057;
+  color: var(--color-primary);
+  font-family: var(--font-primary);
 }
 
 .gift-modal-pix-code-value {
   width: 100%;
-  padding: 12px 16px;
-  border: 2px solid #e9ecef;
-  border-radius: 8px;
-  font-size: 13px;
-  line-height: 1.4;
-  color: #212529;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--color-secondary);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-text);
   resize: none;
   box-sizing: border-box;
+  font-family: monospace;
+  background: var(--color-background-alt);
 }
 
 .gift-modal-pix-code-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 10px;
+  gap: 0.875rem;
+  margin-top: 0.75rem;
 }
 
 .gift-modal-copy {
-  padding: 10px 14px;
-  background: #f8f9fa;
-  color: #212529;
-  border: 2px solid #e9ecef;
-  border-radius: 10px;
-  font-size: 14px;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-white);
+  color: var(--color-primary);
+  border: 2px solid var(--color-accent);\n  border-radius: 50px;
+  font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
+  font-family: var(--font-primary);
 }
 
 .gift-modal-copy:hover {
-  transform: translateY(-1px);
+  background: var(--color-accent);
+  color: var(--color-white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .gift-modal-copy-status {
-  font-size: 13px;
-  color: #6c757d;
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  font-family: var(--font-primary);
 }
 
 .gift-modal-purchased {
   text-align: center;
-  padding: 24px;
+  padding: 2rem;
 }
 
 .purchased-badge {
   display: inline-block;
-  background: #ffc107;
-  color: #000;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-size: 16px;
+  background: var(--color-accent);
+  color: var(--color-white);
+  padding: 0.875rem 1.75rem;
+  border-radius: 50px;
+  font-size: 1.05rem;
   font-weight: 600;
-  margin-bottom: 16px;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-primary);
 }
 
 .purchased-message {
-  color: #6c757d;
-  font-size: 15px;
-  line-height: 1.6;
+  color: var(--color-text-light);
+  font-size: 1rem;
+  line-height: 1.7;
+  font-family: var(--font-primary);
 }
 
 .gift-modal-success {
   text-align: center;
-  padding: 60px 40px;
-  max-width: 400px;
+  padding: 4rem 3rem;
+  max-width: 450px;
 }
 
 .success-icon {
-  width: 80px;
-  height: 80px;
-  background: #28a745;
-  color: white;
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, var(--color-accent) 0%, #b8930c 100%);
+  color: var(--color-white);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 50px;
-  margin: 0 auto 24px auto;
-  animation: successPop 0.5s ease;
+  font-size: 3.5rem;
+  margin: 0 auto 1.75rem auto;
+  animation: successPop 0.6s ease;
+  box-shadow: var(--shadow-lg);
 }
 
 @keyframes successPop {
   0% {
-    transform: scale(0);
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
   }
-  50% {
-    transform: scale(1.1);
+  60% {
+    transform: scale(1.15) rotate(10deg);
   }
   100% {
-    transform: scale(1);
+    transform: scale(1) rotate(0);
+    opacity: 1;
   }
 }
 
 .gift-modal-success h2 {
-  margin: 0 0 12px 0;
-  font-size: 24px;
-  color: #212529;
+  margin: 0 0 1rem 0;
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  color: var(--color-primary);
+  font-family: var(--font-heading);
+  font-weight: 600;
 }
 
 .gift-modal-success p {
-  color: #6c757d;
-  font-size: 16px;
-  line-height: 1.5;
+  color: var(--color-text-light);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  font-family: var(--font-primary);
 }
 
 @media (max-width: 768px) {
+  .gift-modal-backdrop {
+    padding: 1rem;
+  }
+
   .gift-modal {
     max-height: 95vh;
-    border-radius: 16px;
+    border-radius: 20px;
   }
 
   .gift-modal-content {
@@ -362,31 +403,37 @@
   }
 
   .gift-modal-image {
-    min-height: 250px;
-    border-radius: 16px 16px 0 0;
+    min-height: 280px;
+    border-radius: 20px 20px 0 0;
   }
 
   .gift-modal-info {
-    padding: 24px;
+    padding: 1.75rem;
   }
 
   .gift-modal-info h2 {
-    font-size: 22px;
+    font-size: 1.5rem;
   }
 
   .price-value {
-    font-size: 26px;
+    font-size: 1.875rem;
   }
 
   .gift-modal-form h3 {
-    font-size: 18px;
+    font-size: 1.25rem;
   }
 
   .gift-modal-placeholder span {
-    font-size: 80px;
+    font-size: 3rem;
   }
 
   .gift-modal-success {
-    padding: 40px 24px;
+    padding: 2.5rem 1.75rem;
+  }
+
+  .success-icon {
+    width: 75px;
+    height: 75px;
+    font-size: 3rem;
   }
 }

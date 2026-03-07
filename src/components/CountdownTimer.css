@@ -1,0 +1,95 @@
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  margin: 2rem auto;
+  max-width: 600px;
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 70px;
+}
+
+.countdown-value {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.countdown-label {
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.countdown-separator {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--color-accent);
+  line-height: 1;
+  padding: 0 0.25rem;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+@media (max-width: 768px) {
+  .countdown-timer {
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+    margin: 1.5rem 1rem;
+  }
+
+  .countdown-item {
+    min-width: 60px;
+    gap: 0.25rem;
+  }
+
+  .countdown-value {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+
+  .countdown-label {
+    font-size: 0.7rem;
+  }
+
+  .countdown-separator {
+    font-size: 2rem;
+    padding: 0 0.15rem;
+  }
+}

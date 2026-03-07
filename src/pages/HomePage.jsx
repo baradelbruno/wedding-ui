@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import './HomePage.css'
 import Header from '../components/Header'
+import CountdownTimer from '../components/CountdownTimer'
 import mainImage from '../Assets/main-image.jpeg'
 
 // Easily configurable address
 const VENUE_ADDRESS = "Avenida das Flores, 30 - Distrito do Porto, Capela do Alto - SP, 18195-000"
+const WEDDING_DATE = "2026-08-08T15:00:00" // Adjust time as needed
 
 function HomePage() {
   const [addressCopyStatus, setAddressCopyStatus] = useState('')
@@ -58,47 +60,63 @@ function HomePage() {
           </div>
         </div>
 
-        <div className="location-section">
-          <div className="map-container">
-            <iframe
-              src={mapUrlAlt}
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Venue Location"
-            />
+        <section className="welcome-section">
+          <div className="section-container">
+            <h2 className="section-title">Bem-vindos</h2>
+            <div className="section-divider"></div>
+            <p className="welcome-text">
+              Com grande alegria, convidamos você para celebrar conosco o nosso casamento.
+              Sua presença tornará este dia ainda mais especial e inesquecível.
+            </p>
+            <CountdownTimer targetDate={WEDDING_DATE} />
           </div>
-          
-          <div
-            className={`address-display${addressCopyStatus ? ' copied' : ''}`}
-            role="button"
-            tabIndex={0}
-            title="Clique para copiar"
-            onClick={copyAddressToClipboard}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault()
-                copyAddressToClipboard()
-              }
-            }}
-          >
-            <svg 
-              className="location-icon" 
-              xmlns="http://www.w3.org/2000/svg" 
-              viewBox="0 0 24 24" 
-              fill="currentColor"
+        </section>
+
+        <section className="location-section">
+          <div className="section-container">
+            <h2 className="section-title">Local da Cerimônia</h2>
+            <div className="section-divider"></div>
+            <div className="map-container">
+              <iframe
+                src={mapUrlAlt}
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Venue Location"
+              />
+            </div>
+            
+            <div
+              className={`address-display${addressCopyStatus ? ' copied' : ''}`}
+              role="button"
+              tabIndex={0}
+              title="Clique para copiar"
+              onClick={copyAddressToClipboard}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  copyAddressToClipboard()
+                }
+              }}
             >
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-            <span className="address-text">{VENUE_ADDRESS}</span>
-            {addressCopyStatus && (
-              <span className="address-copy-status">{addressCopyStatus}</span>
-            )}
+              <svg 
+                className="location-icon" 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" 
+                fill="currentColor"
+              >
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              <span className="address-text">{VENUE_ADDRESS}</span>
+              {addressCopyStatus && (
+                <span className="address-copy-status">{addressCopyStatus}</span>
+              )}
+            </div>
           </div>
-        </div>
+        </section>
       </main>
     </div>
   )
