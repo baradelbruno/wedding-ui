@@ -347,7 +347,7 @@
 .success-icon {
   width: 90px;
   height: 90px;
-  background: linear-gradient(135deg, var(--color-accent) 0%, #b8930c 100%);
+  background: linear-gradient(135deg, var(--color-accent) 0%, #5a0000 100%);
   color: var(--color-white);
   border-radius: 50%;
   display: flex;
