@@ -60,7 +60,14 @@ function GeneralInfo() {
 
           <div className="general-info-subtitle">Dicas Gerais:</div>
           <ul className="general-info-list">
-            <li>O casamento será em uma chácara. Prepare-se para pisar na grama.</li>
+            <li>A cerimônia e a recepção será ao ar livre. Venha com sapato apropriado para grama.</li>
+            <li>À noite, costuma fazer frio na região. Recomendamos trazer uma blusa.</li>
+          </ul>
+
+        <div className="general-info-subtitle">Sugestões de Hospedagem:</div>
+          <ul className="general-info-list">
+            <li>Capela do Alto é a cidade mais próxima, a cerca de 15 minutos da festa.</li>
+            <li>Sorocaba é a cidade com maior oferta de hotéis, a cerca de uma hora de distância.</li>
           </ul>
         </section>
 
