@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(44, 62, 80, 0.85);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -137,7 +137,7 @@
   padding: 1.25rem 1.5rem;
   background: var(--color-accent-light);
   border-radius: 16px;
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  border: 1px solid rgba(122, 0, 0, 0.15);
 }
 
 .price-label {
@@ -190,7 +190,7 @@
 .form-group input:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 0 4px rgba(122, 0, 0, 0.08);
 }
 
 .form-group small {
@@ -203,7 +203,7 @@
 .gift-modal-submit {
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(135deg, var(--color-primary) 0%, #1a2a3a 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, #5a0000 100%);
   color: var(--color-white);
   border: none;
   border-radius: 50px;
@@ -220,7 +220,7 @@
 .gift-modal-submit:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
-  background: linear-gradient(135deg, var(--color-accent) 0%, #b8930c 100%);
+  background: linear-gradient(135deg, #9a0000 0%, #7a0000 100%);
 }
 
 .gift-modal-submit:disabled {

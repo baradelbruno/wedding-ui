@@ -53,8 +53,8 @@ function HomePage() {
         <div className="photo-placeholder">
           <img src={mainImage} alt="Wedding Photo" className="main-image" />
           <div className="hero-overlay">
-            <div className="hero-overlay-title">Larissa e Bruno</div>
-            <div className="hero-overlay-date">08 . 08 . 2026</div>
+            <div className="hero-overlay-title">Larissa & Bruno</div>
+            <div className="hero-overlay-month">08 . 08 . 2026</div>
             <div className="hero-overlay-divider" />
             <div className="hero-overlay-place">Capela do Alto</div>
           </div>
@@ -62,11 +62,11 @@ function HomePage() {
 
         <section className="welcome-section">
           <div className="section-container">
-            <h2 className="section-title">Bem-vindos</h2>
+            <h2 className="section-title">Nosso Grande Dia</h2>
             <div className="section-divider"></div>
             <p className="welcome-text">
-              Com grande alegria, convidamos você para celebrar conosco o nosso casamento.
-              Sua presença tornará este dia ainda mais especial e inesquecível.
+              É com grande alegria que convidamos você para celebrar conosco este momento tão especial.
+              Sua presença tornará nosso dia ainda mais inesquecível.
             </p>
             <CountdownTimer targetDate={WEDDING_DATE} />
           </div>
