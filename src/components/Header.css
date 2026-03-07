@@ -1,10 +1,11 @@
 .header {
-  background: var(--color-white);
-  box-shadow: 0 1px 0 rgba(44, 62, 80, 0.06);
-  position: sticky;
+  background: transparent;
+  box-shadow: none;
+  position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  backdrop-filter: blur(10px);
   transition: all var(--transition-base);
 }
 
@@ -33,11 +34,11 @@
 }
 
 .logo-image {
-  height: 70px;
+  height: 100px;
   width: auto;
   max-width: 200px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
+  filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
 }
 
 .nav-buttons {
@@ -96,9 +97,10 @@
 }
 
 .nav-button.secondary {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.95);
   color: var(--color-primary);
-  border-color: var(--color-secondary);
+  border-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
 }
 
 .nav-button.secondary:hover {
@@ -108,9 +110,10 @@
 }
 
 .back-button {
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.95);
   color: var(--color-primary);
-  border-color: var(--color-secondary);
+  border-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   gap: 0.5rem;
