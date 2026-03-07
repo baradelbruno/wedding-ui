@@ -118,7 +118,7 @@
   font-size: clamp(1.75rem, 3vw, 2.25rem);
   color: var(--color-primary);
   font-weight: 600;
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-primary);
 }
 
 .gift-modal-description {
@@ -151,7 +151,7 @@
   font-size: 2.25rem;
   color: var(--color-accent);
   font-weight: 700;
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-primary);
 }
 
 .gift-modal-form h3 {
@@ -159,7 +159,7 @@
   margin: 0 0 1.75rem 0;
   color: var(--color-primary);
   font-weight: 600;
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-primary);
 }
 
 .form-group {
@@ -377,7 +377,7 @@
   margin: 0 0 1rem 0;
   font-size: clamp(1.5rem, 3vw, 1.875rem);
   color: var(--color-primary);
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-primary);
   font-weight: 600;
 }
 

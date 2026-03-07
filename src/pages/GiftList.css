@@ -23,7 +23,7 @@
   font-size: clamp(2rem, 5vw, 3rem);
   color: var(--color-primary);
   font-weight: 600;
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-primary);
 }
 
 .gift-list-subtitle {
@@ -90,7 +90,7 @@
   font-size: 1.75rem;
   color: var(--color-primary);
   font-weight: 600;
-  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-family: var(--font-primary);
 }
 
 .empty-state p {
