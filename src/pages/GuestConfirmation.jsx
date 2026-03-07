@@ -113,7 +113,7 @@ function GuestConfirmation() {
       
       <div className="content-wrapper">
         <div>
-          <h1>Lista de Presença</h1>
+          <h1>Confirme Sua Presença</h1>
         </div>
 
         <div className="card">
