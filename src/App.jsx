@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage'
 import GuestConfirmation from './pages/GuestConfirmation'
 import GiftList from './pages/GiftList'
 import GeneralInfo from './pages/GeneralInfo'
+import ScrollToTop from './components/ScrollToTop'
 import { initializePageLoader } from './utils/pageLoader'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/confirmar-presenca" element={<GuestConfirmation />} />
