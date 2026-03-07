@@ -34,7 +34,6 @@ function GuestConfirmation() {
       
       const data = await response.json()
       setGuests(data)
-      console.log('✅ Loaded guests:', data)
     } catch (err) {
       setError(err.message)
       console.error('❌ Error loading guests:', err)
