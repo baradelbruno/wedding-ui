@@ -49,7 +49,7 @@ function GeneralInfo() {
 
         <section className="general-info-section" aria-label="Detalhes do evento">
           <p className="general-info-line">
-            <span className="general-info-label">Data:</span> 8 . 8 .2026
+            <span className="general-info-label">Data:</span> 8 de Agosto de 2026
           </p>
           <p className="general-info-line">
             <span className="general-info-label">Horário:</span> 15h30
@@ -62,12 +62,23 @@ function GeneralInfo() {
           <ul className="general-info-list">
             <li>A cerimônia e a recepção será ao ar livre. Venha com sapato apropriado para grama.</li>
             <li>À noite, costuma fazer frio na região. Recomendamos trazer uma blusa.</li>
+            <li>Capela do Alto é a cidade mais próxima, a cerca de 15 minutos da festa.</li>
+            <li>Sorocaba é a cidade com maior oferta de hotéis, a cerca de uma hora de distância.</li>
           </ul>
 
         <div className="general-info-subtitle">Sugestões de Hospedagem:</div>
           <ul className="general-info-list">
-            <li>Capela do Alto é a cidade mais próxima, a cerca de 15 minutos da festa.</li>
-            <li>Sorocaba é a cidade com maior oferta de hotéis, a cerca de uma hora de distância.</li>
+            <li><strong>Em Capela do Alto (15 min):</strong></li>
+            <li className="indent">• <a href="https://www.booking.com/searchresults.html?ss=Pousada+Portal+das+%C3%81guas%2C+Capela+do+Alto" target="_blank" rel="noopener noreferrer">Pousada Portal das Águas</a> - Pousada aconchegante com área verde</li>
+            <li className="indent">• <a href="https://www.booking.com/searchresults.html?ss=Hotel+Fazenda+Vale+do+Sol%2C+Capela+do+Alto" target="_blank" rel="noopener noreferrer">Hotel Fazenda Vale do Sol</a> - Opção rural com estrutura completa</li>
+            <li><strong>Em Sorocaba (1h):</strong></li>
+            <li className="indent">• <a href="https://www.booking.com/searchresults.html?ss=Ibis+Sorocaba" target="_blank" rel="noopener noreferrer">Ibis Sorocaba</a> - Custo-benefício, próximo ao shopping</li>
+            <li className="indent">• <a href="https://www.booking.com/searchresults.html?ss=Dan+Inn+Sorocaba" target="_blank" rel="noopener noreferrer">Dan Inn Sorocaba</a> - Hotel confortável com café da manhã</li>
+            <li className="indent">• <a href="https://www.booking.com/searchresults.html?ss=Novotel+Sorocaba" target="_blank" rel="noopener noreferrer">Novotel Sorocaba</a> - Opção moderna com piscina</li>
+            <li className="indent">• <a href="https://www.booking.com/searchresults.html?ss=Comfort+Hotel+Sorocaba" target="_blank" rel="noopener noreferrer">Comfort Hotel Sorocaba</a> - Boa localização central</li>
+            <li className="indent">• <a href="https://www.booking.com/searchresults.html?ss=Garden+Hotel+Sorocaba" target="_blank" rel="noopener noreferrer">Garden Hotel</a> - Hotel tradicional da cidade</li>
+            <li><strong>Região Próxima:</strong></li>
+            <li className="indent">• <a href="https://www.booking.com/searchresults.html?ss=Salto+de+Pirapora%2C+S%C3%A3o+Paulo%2C+Brasil" target="_blank" rel="noopener noreferrer">Pousadas em Salto de Pirapora</a> (30 min) - Cidade turística com várias opções</li>
           </ul>
         </section>
 
