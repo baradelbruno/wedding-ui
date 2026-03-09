@@ -336,7 +336,8 @@
   }
 
   .map-container {
-    margin: 2rem 1rem 1.5rem;
+    margin: 2rem auto 1.5rem;
+    max-width: calc(100% - 2rem);
     border-radius: 16px;
   }
 
