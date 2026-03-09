@@ -54,7 +54,7 @@ function GuestSearch({ guests, onSelectGuest }) {
           type="text"
           value={nameInput}
           onChange={(e) => handleInputChange(e.target.value)}
-          placeholder="Digite seu nome exatamente como está no convite"
+          placeholder="Seu nome como está no convite"
           style={{
             width: '100%',
             padding: '16px 20px',

@@ -126,7 +126,7 @@ function GuestConfirmation() {
             <div style={{ 
               marginBottom: '12px',
               fontSize: '32px'
-            }}>⏳</div>
+            }}>●</div>
             Carregando convidados...
           </div>
         )}
