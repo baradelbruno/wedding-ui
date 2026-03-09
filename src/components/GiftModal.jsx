@@ -2,6 +2,7 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import QRCode from 'qrcode'
 import { getFullImageUrl } from '../utils/imageUtils'
+import { confirmGiftPayment } from '../services/api'
 import './GiftModal.css'
 
 function GiftModal({ gift, onClose, onPurchase }) {
@@ -15,6 +16,7 @@ function GiftModal({ gift, onClose, onPurchase }) {
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState('')
   const [pixPaymentCode, setPixPaymentCode] = useState('')
   const [copyStatus, setCopyStatus] = useState('')
+  const [purchaseId, setPurchaseId] = useState(null)
 
   const showPrice = typeof gift.price === 'number' && gift.price !== 0
 
@@ -85,6 +87,9 @@ function GiftModal({ gift, onClose, onPurchase }) {
     try {
       const purchase = await onPurchase(gift.id, purchaseData)
 
+      // Store purchase ID for payment confirmation
+      setPurchaseId(purchase.id)
+
       const code = (purchase?.pixCode || '').trim()
       if (!code) {
         alert('PIX não configurado para este presente.')
@@ -132,6 +137,24 @@ function GiftModal({ gift, onClose, onPurchase }) {
       console.error('Erro ao copiar código PIX:', err)
       setCopyStatus('Não foi possível copiar')
       setTimeout(() => setCopyStatus(''), 2000)
+    }
+  }
+
+  const handleConfirmPayment = async () => {
+    if (!purchaseId) {
+      console.error('Purchase ID not available')
+      setStep('thanks')
+      return
+    }
+
+    try {
+      await confirmGiftPayment(purchaseId)
+      console.log('✅ Payment confirmed for purchase ID:', purchaseId)
+      setStep('thanks')
+    } catch (error) {
+      console.error('❌ Error confirming payment:', error)
+      // Still show thanks screen even if API fails
+      setStep('thanks')
     }
   }
 
@@ -285,7 +308,7 @@ function GiftModal({ gift, onClose, onPurchase }) {
                   </div>
                 )}
 
-                <button type="button" className="gift-modal-submit" onClick={() => setStep('thanks')}>
+                <button type="button" className="gift-modal-submit" onClick={handleConfirmPayment}>
                   Fiz o pagamento!
                 </button>
               </div>

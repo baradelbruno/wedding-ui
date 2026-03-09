@@ -202,3 +202,11 @@ export const getGiftById = (id) => get(`/Gifts/${id}`)
 export const purchaseGift = (giftId, purchaseData) => {
   return post(`/Gifts/${giftId}/purchase`, purchaseData)
 }
+
+/**
+ * Confirm payment for a gift purchase
+ * @param {number} purchaseId - Purchase ID
+ */
+export const confirmGiftPayment = (purchaseId) => {
+  return post(`/Gifts/purchases/${purchaseId}/confirm`, {})
+}
