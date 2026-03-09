@@ -33,7 +33,7 @@ function GuestSearch({ guests, onSelectGuest }) {
       setErrorMessage(null)
       onSelectGuest(matchedGuest)
     } else {
-      setErrorMessage('Nome não encontrado na lista de convidados. Por favor, verifique se digitou corretamente.')
+      setErrorMessage('Nome não encontrado na lista de convidados. Por favor, verifique se digitou exatamente o nome como está no seu convite.')
       onSelectGuest(null)
     }
     
