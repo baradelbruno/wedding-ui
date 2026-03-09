@@ -20,12 +20,61 @@ function GiftModal({ gift, onClose, onPurchase }) {
 
   const fullImageUrl = getFullImageUrl(gift.imageUrl)
 
+  // Validate email
+  const isEmailValid = (email) => {
+    return email.includes('@') && email.includes('.com')
+  }
+
+  // Format phone number with mask
+  const formatPhoneNumber = (value) => {
+    // Remove all non-digits
+    const numbers = value.replace(/\D/g, '')
+    
+    // Apply mask (99) 99999-9999
+    if (numbers.length <= 2) {
+      return numbers
+    } else if (numbers.length <= 7) {
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2)}`
+    } else if (numbers.length <= 11) {
+      return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`
+    }
+    // Limit to 11 digits
+    return `(${numbers.slice(0, 2)}) ${numbers.slice(2, 7)}-${numbers.slice(7, 11)}`
+  }
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setPurchaseData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    
+    // Apply phone mask if it's the phone field
+    if (name === 'phone') {
+      const formatted = formatPhoneNumber(value)
+      setPurchaseData(prev => ({
+        ...prev,
+        [name]: formatted
+      }))
+    } else {
+      setPurchaseData(prev => ({
+        ...prev,
+        [name]: value
+      }))
+    }
+  }
+
+  // Check if form is valid (only validate optional fields if they have content)
+  const isFormValid = () => {
+    // Name is required
+    if (!purchaseData.purchasedBy.trim()) return false
+    
+    // Email is optional, but if provided must be valid
+    if (purchaseData.email && !isEmailValid(purchaseData.email)) return false
+    
+    // Phone is optional, but if provided must have 11 digits
+    if (purchaseData.phone) {
+      const phoneDigits = purchaseData.phone.replace(/\D/g, '')
+      if (phoneDigits.length > 0 && phoneDigits.length < 11) return false
+    }
+    
+    return true
   }
 
   const handleContinuePurchase = async (e) => {
@@ -172,7 +221,13 @@ function GiftModal({ gift, onClose, onPurchase }) {
                     value={purchaseData.email}
                     onChange={handleInputChange}
                     placeholder="seu@email.com"
+                    className={purchaseData.email && !isEmailValid(purchaseData.email) ? 'input-error' : ''}
                   />
+                  {purchaseData.email && !isEmailValid(purchaseData.email) && (
+                    <div className="field-error">
+                      Email deve conter "@" e ".com"
+                    </div>
+                  )}
                 </div>
 
                 <div className="form-group">
@@ -184,13 +239,20 @@ function GiftModal({ gift, onClose, onPurchase }) {
                     value={purchaseData.phone}
                     onChange={handleInputChange}
                     placeholder="(00) 00000-0000"
+                    maxLength="15"
+                    className={purchaseData.phone && purchaseData.phone.replace(/\D/g, '').length < 11 ? 'input-error' : ''}
                   />
+                  {purchaseData.phone && purchaseData.phone.replace(/\D/g, '').length > 0 && purchaseData.phone.replace(/\D/g, '').length < 11 && (
+                    <div className="field-error">
+                      Telefone deve ter 11 dígitos
+                    </div>
+                  )}
                 </div>
 
                 <button 
                   type="submit" 
                   className="gift-modal-submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !isFormValid()}
                 >
                   {isSubmitting ? 'Processando...' : 'Continuar compra'}
                 </button>
