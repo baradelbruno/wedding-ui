@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './HomePage.css'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import CountdownTimer from '../components/CountdownTimer'
 import mainImage from '../Assets/main-image.jpeg'
 
@@ -118,6 +119,7 @@ function HomePage() {
           </div>
         </section>
       </main>
+      <Footer />
     </div>
   )
 }

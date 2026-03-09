@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import './GeneralInfo.css'
 
 // Easily configurable address
@@ -134,6 +135,7 @@ function GeneralInfo() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }

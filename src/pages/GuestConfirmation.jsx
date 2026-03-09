@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import GuestSearch from '../components/GuestSearch'
 import ConfirmationForm from '../components/ConfirmationForm'
 import StatusMessage from '../components/StatusMessage'
@@ -183,6 +184,7 @@ function GuestConfirmation() {
         )}
       </div>
       </div>
+      <Footer />
     </div>
   )
 }

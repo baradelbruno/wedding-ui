@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import GiftCard from '../components/GiftCard'
 import GiftModal from '../components/GiftModal'
 import StatusMessage from '../components/StatusMessage'
@@ -99,6 +100,7 @@ function GiftList() {
           onPurchase={handlePurchase}
         />
       )}
+      <Footer />
     </div>
   )
 }
