@@ -135,10 +135,10 @@
   gap: 1rem;
   margin-bottom: 2rem;
   padding: 1.25rem 1.5rem;
-  background: linear-gradient(135deg, #f8f4ed 0%, #faf7f2 100%);
+  background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 100%);
   border-radius: 16px;
-  border: 2px solid rgba(101, 67, 33, 0.12);
-  box-shadow: 0 2px 8px rgba(101, 67, 33, 0.05);
+  border: 2px solid rgba(45, 122, 61, 0.15);
+  box-shadow: 0 2px 8px rgba(45, 122, 61, 0.08);
 }
 
 .price-label {
@@ -150,7 +150,7 @@
 
 .price-value {
   font-size: 2.25rem;
-  color: var(--color-primary);
+  color: #2d7a3d;
   font-weight: 700;
   font-family: var(--font-primary);
 }
