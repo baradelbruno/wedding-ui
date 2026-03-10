@@ -54,7 +54,7 @@ function GiftList() {
         <div className="gift-list-header">
           <h1>Lista de Presentes</h1>
           <p className="gift-list-subtitle">
-            Sua presença é o nosso maior presente! Mas, se desejar, ajude-nos a tornar nossa Lua de Mel ainda mais especial.
+            Ter você conosco neste dia já é o maior presente. Mas, se desejar nos presentear, uma contribuição para nossa lua de mel será recebida com muito carinho.
           </p>
         </div>
 
