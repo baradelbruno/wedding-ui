@@ -102,15 +102,14 @@
 
 .general-info-list li a {
   color: var(--color-accent);
-  text-decoration: none;
+  text-decoration: underline;
   font-weight: 600;
   transition: all var(--transition-base);
-  border-bottom: 1px solid transparent;
 }
 
 .general-info-list li a:hover {
   color: var(--color-primary);
-  border-bottom: 1px solid var(--color-primary);
+  text-decoration: underline;
 }
 
 /* Location Section */
