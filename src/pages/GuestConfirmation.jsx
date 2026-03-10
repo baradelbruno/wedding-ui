@@ -69,7 +69,6 @@ function GuestConfirmation() {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
 
-      console.log('✅ Attendance confirmed for:', selectedGuest.name)
       setConfirmMessage({ type: 'success', text: `Presença confirmada para ${selectedGuest.name}!` })
       
       // Update the guest in the local state
@@ -104,7 +103,7 @@ function GuestConfirmation() {
   // Handle guest selection
   const handleSelectGuest = (guest) => {
     setSelectedGuest(guest)
-    setConfirmMessage(null)
+    // Don't clear confirmation message when selecting a guest
   }
 
   return (

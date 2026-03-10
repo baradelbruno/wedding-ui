@@ -149,7 +149,6 @@ function GiftModal({ gift, onClose, onPurchase }) {
 
     try {
       await confirmGiftPayment(purchaseId)
-      console.log('✅ Payment confirmed for purchase ID:', purchaseId)
       setStep('thanks')
     } catch (error) {
       console.error('❌ Error confirming payment:', error)

@@ -1,5 +1,24 @@
+import { useEffect, useState } from 'react'
+
 function StatusMessage({ message }) {
-  if (!message) return null
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    if (message) {
+      setVisible(true)
+      
+      // Keep the message visible for 6 seconds
+      const timer = setTimeout(() => {
+        setVisible(false)
+      }, 6000)
+
+      return () => clearTimeout(timer)
+    } else {
+      setVisible(false)
+    }
+  }, [message])
+
+  if (!message || !visible) return null
 
   const isSuccess = message.type === 'success'
 
@@ -18,7 +37,8 @@ function StatusMessage({ message }) {
       fontWeight: '500',
       display: 'flex',
       alignItems: 'center',
-      gap: '10px'
+      gap: '10px',
+      animation: 'fadeIn 0.3s ease-in-out'
     }}>
       <span style={{ fontSize: '20px' }}>
         {isSuccess ? '✓' : '⚠'}
