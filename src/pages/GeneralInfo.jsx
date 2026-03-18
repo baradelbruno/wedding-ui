@@ -61,7 +61,7 @@ function GeneralInfo() {
 
           <div className="general-info-subtitle">Dicas Gerais:</div>
           <ul className="general-info-list">
-            <li>Traje: Esporte fino ou Formal</li>
+            <li>Traje: Esporte Fino ou Formal</li>
             <li>A cerimônia e a festa serão, majoritariamente, ao ar livre. Venha com sapato apropriado para grama.</li>
             <li>À noite, costuma fazer frio na região. Estamos preparando maneiras de mantê-los aquecidos, mas recomendamos trazer uma blusa.</li>
             <li>Não há Ubers no local. Organize o transporte com antecedência.</li>
