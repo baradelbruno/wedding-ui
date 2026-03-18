@@ -5,6 +5,15 @@ function GuestSearch({ guests, onSelectGuest }) {
   const [errorMessage, setErrorMessage] = useState(null)
   const [isValidating, setIsValidating] = useState(false)
 
+  // Remove accents and normalize text for comparison
+  const normalizeText = (text) => {
+    return text
+      .normalize('NFD') // Decompose characters (e.g., é -> e + ´)
+      .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
+      .toLowerCase()
+      .trim()
+  }
+
   // Check for exact match when user stops typing
   useEffect(() => {
     if (!nameInput.trim()) {
@@ -24,9 +33,10 @@ function GuestSearch({ guests, onSelectGuest }) {
   const validateName = (name) => {
     setIsValidating(true)
     
-    // Find exact match (case-insensitive)
+    // Find exact match (case-insensitive and accent-insensitive)
+    const normalizedInput = normalizeText(name)
     const matchedGuest = guests.find(
-      guest => guest.name.toLowerCase() === name.toLowerCase()
+      guest => normalizeText(guest.name) === normalizedInput
     )
 
     if (matchedGuest) {
